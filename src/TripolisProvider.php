@@ -6,7 +6,7 @@
  * Time: 15:09
  */
 
-namespace HarperJones;
+namespace HarperJones\Tripolis;
 
 /**
  * Provider for all Tripolis services.
@@ -14,14 +14,12 @@ namespace HarperJones;
  * @author Peter Eussen <peter.eussen@harperjones.nl>
  * @version 1.0
  */
-use HarperJones\Tripolis;
-
 class TripolisProvider
 {
 
-	const GROUP_TYPE_SUBSCRIPTION = Tripolis\Service\ContactGroupService::GROUP_SUBSCRIPTION;
-	const GROUP_TYPE_TEST = Tripolis\Service\ContactGroupService::GROUP_TEST;
-	const GROUP_TYPE_STATIC = Tripolis\Service\ContactGroupService::GROUP_STATIC;
+	const GROUP_TYPE_SUBSCRIPTION = Service\ContactGroupService::GROUP_SUBSCRIPTION;
+	const GROUP_TYPE_TEST = Service\ContactGroupService::GROUP_TEST;
+	const GROUP_TYPE_STATIC = Service\ContactGroupService::GROUP_STATIC;
 
 	/**
 	 * URL to the Tripolis Instance you are using (see documentation)
@@ -33,7 +31,7 @@ class TripolisProvider
 	/**
 	 * Authentication object
 	 *
-	 * @var Tripolis\Authentication
+	 * @var Authentication
 	 */
 	protected $authentication;
 
@@ -54,7 +52,7 @@ class TripolisProvider
 	 */
 	public function __construct($client,$username,$password,$dialogue_url = null)
 	{
-		$this->authentication = new Tripolis\Authentication($client,$username,$password);
+		$this->authentication = new Authentication($client,$username,$password);
 
 		if ( $dialogue_url !== null) {
 			$this->dialogue_instance_url = $dialogue_url;
@@ -79,11 +77,11 @@ class TripolisProvider
 	 * @param $service
 	 * @param $args
 	 *
-	 * @return Tripolis\Service\AbstractService
+	 * @return Service\AbstractService
 	 */
 	public function __call($service,$args)
 	{
-		return $this->getService( __NAMESPACE__ . "\\Tripolis\\Service\\" . ucfirst($service) . "Service");
+		return $this->getService( __NAMESPACE__ . "\\Service\\" . ucfirst($service) . "Service");
 	}
 
 	/**
@@ -99,7 +97,7 @@ class TripolisProvider
 	/**
 	 * Returns an authenticiation object containing the credentials
 	 *
-	 * @return Tripolis\Authentication
+	 * @return Authentication
 	 */
 	public function getAuthentication()
 	{

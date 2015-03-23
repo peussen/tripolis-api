@@ -9,7 +9,7 @@
 namespace HarperJones\Tripolis\Service;
 
 use HarperJones\Tripolis\AlreadyExistsException;
-use HarperJones\TripolisProvider;
+use HarperJones\Tripolis\TripolisProvider;
 
 /**
  * ContactService Client (Partial)
@@ -252,6 +252,58 @@ class ContactService extends AbstractService
 		return false;
 	}
 
+	public function search(array $where = array())
+	{
+		$fieldMatches = array();
+
+		foreach ($where as $clause) {
+			if ( !is_array($clause) || count($clause) < 2 || count($clause) > 3) {
+				throw new \InvalidArgumentException('Search condition error');
+			}
+
+			if ( count($clause) == 3) {
+				$fieldMatches[] = array(
+					'contactDatabaseFieldId' => $clause[0],
+					'operator'               => $this->operatorToKeyword($clause[1]),
+					'value'                  => $clause[2]
+				);
+			} else {
+				$fieldMatches[] = array(
+					'contactDatabaseFieldId' => $clause[0],
+					'operator'               => 'EQUALS',
+					'value'                  => $clause[1]
+				);
+			}
+		}
+		$body = array(
+			'contactDatabaseId' => $this->db,
+			'contactFieldSearchParameters' => array (
+				'contactFieldSearchParameter' => $fieldMatches
+			),
+			'returnContactFields' => array(
+				'returnAllContactFields' => 1
+			)
+		);
+		return $this->invoke(__FUNCTION__,$body);
+	}
+
+	private function operatorToKeyword($op)
+	{
+		switch (strtolower($op)) {
+			case '=': return 'EQUALS';
+			case '!=': return 'NOT_EQUALS';
+			case '>': return 'GREATER_THAN';
+			case '>=': return 'GREATER_THAN_OR_EQUALS';
+			case '<': return 'LESS_THAN';
+			case '<': return 'LESS_THAN_OR_EQUALS';
+			case 'contains': return 'CONTAINS';
+			case 'not contains': return 'DOES_NOT_CONTAIN';
+			case 'starts': return 'STARTS_WITH';
+			case 'ends': return 'ENDS_WITH';
+			default:
+				return 'EQUALS';
+		}
+	}
 	/**
 	 * Converts an array into a "Complex" Soap Variable structure
 	 * The value of the array will be converted to an entry called "value", and the key

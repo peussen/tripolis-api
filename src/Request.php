@@ -10,7 +10,6 @@ namespace HarperJones\Tripolis;
 use HarperJones\Tripolis\Response;
 use HarperJones\Tripolis\Response\GenericResponse;
 use HarperJones\Tripolis\Service\AbstractService;
-use HarperJones\TripolisProvider;
 
 /**
  * Wrapper to create a request to Tripolis, and understand the response
@@ -21,7 +20,7 @@ class Request
 {
 	/**
 	 *
-	 * @var \HarperJones\TripolisProvider
+	 * @var \HarperJones\Tripolis\TripolisProvider
 	 */
 	protected $provider;
 

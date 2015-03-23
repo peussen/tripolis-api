@@ -8,7 +8,7 @@
 
 namespace HarperJones\Tripolis\Service;
 
-use HarperJones\TripolisProvider;
+use HarperJones\Tripolis\TripolisProvider;
 
 class GenericService extends AbstractService
 {

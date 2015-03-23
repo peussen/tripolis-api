@@ -14,7 +14,7 @@ class UserService extends AbstractService
 	/**
 	 * Retrieves user information bases on the supplied user authentication
 	 *
-	 * @return WPTripolis\Tripolis\Response\UserService\GetByAuthInfoResponse
+	 * @return HarperJones\Tripolis\Response\UserService\GetByAuthInfoResponse
 	 */
 	public function getByAuthInfo()
 	{
@@ -23,7 +23,7 @@ class UserService extends AbstractService
 
 	/**
 	 * Get a list of users based on the authentication information sent
-	 * @return WPTripolis\Tripolis\Response\UserService\GetUsersInClientDomainByAuthInfoResponse
+	 * @return HarperJones\Tripolis\Response\UserService\GetUsersInClientDomainByAuthInfoResponse
 	 */
 	public function getUsersInClientDomainByAuthInfo()
 	{

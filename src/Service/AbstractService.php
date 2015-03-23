@@ -10,14 +10,14 @@ namespace HarperJones\Tripolis\Service;
 
 
 use HarperJones\Tripolis\Request;
-use HarperJones\TripolisProvider;
+use HarperJones\Tripolis\TripolisProvider;
 
 abstract class AbstractService
 {
 	protected $serviceURI;
 
 	/**
-	 * @var \HarperJones\TripolisProvider
+	 * @var \HarperJones\Tripolis\TripolisProvider
 	 */
 	protected $provider;
 	protected $client = null;
