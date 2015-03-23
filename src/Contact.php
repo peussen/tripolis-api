@@ -166,7 +166,71 @@ class Contact
 	}
 
 	/**
+	 * Make a user join a group
 	 *
+	 * @param string $group
+	 * @param bool   $isId (default false)
+	 *
+	 * @return $this|bool
+	 * @since 0.3
+	 */
+	public function join($group,$isId = false)
+	{
+		if ( !$this->valid()) {
+			return false;
+		}
+
+		if ( $isId ) {
+			$groupId = $group;
+		} else {
+			$service = $this->provider->contactGroup()->database($this->database);
+			$groups  = $service->all();
+
+			$groupId = $this->lookupByName($groups->getData(),$group);
+		}
+
+		if ( $groupId ) {
+			$service = $this->provider->contact()->database($this->database);
+			$service->addToContactGroup($this->contact['_id'],$groupId);
+			return $this;
+		}
+		throw new \InvalidArgumentException("No such group $group");
+	}
+
+	/**
+	 * Unsubscribes a user from a group
+	 *
+	 * @param string $group
+	 * @param bool   $isId
+	 *
+	 * @return $this|bool
+	 * @since 0.3
+	 */
+	public function leave($group, $isId = false)
+	{
+		if ( !$this->valid()) {
+			return false;
+		}
+
+		if ( $isId ) {
+			$groupId = $group;
+		} else {
+			$service = $this->provider->contactGroup()->database( $this->database );
+			$groups  = $service->all();
+
+			$groupId = $this->lookupByName( $groups->getData(), $group );
+		}
+
+		if ( $groupId ) {
+			$service = $this->provider->contact()->database($this->database);
+			$service->removeFromContactGroup($this->contact['_id'],$groupId);
+			return $this;
+		}
+		throw new \InvalidArgumentException("No such group $group");
+	}
+
+	/**
+	 * Get a list of fields for the database & creates a key/value set of fields
 	 *
 	 */
 	private function getAllFields()
@@ -188,6 +252,11 @@ class Contact
 		$this->keyfield = $pk;
 	}
 
+	/**
+	 * Transforms a set of contact fields to a key/value set and stores it in self::$contact
+	 *
+	 * @param $contact
+	 */
 	private function storeContactData($contact)
 	{
 		$fields = array();
@@ -207,8 +276,34 @@ class Contact
 		$this->contact = $fields;
 	}
 
+	/**
+	 * Locally change the record so it reflects recent changes without the round-trip
+	 *
+	 * @param $fields
+	 */
 	private function updateInternalContact($fields)
 	{
 		$this->contact = array_merge($this->contact,$fields);
 	}
+
+	/**
+	 * Searches an ID from a array of objects based on the name attribute
+	 *
+	 * @param array  $set
+	 * @param string $name
+	 *
+	 * @return bool|string
+	 */
+	private function lookupByName($set,$name)
+	{
+		if ( is_array($set)) {
+			foreach( $set as $id => $element) {
+				if ( isset($element->name) && $name) {
+					return $id;
+				}
+			}
+		}
+		return false;
+	}
+
 }
