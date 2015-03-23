@@ -30,6 +30,38 @@ class Contact
 	}
 
 	/**
+	 * Creates a new user and prepares the internal structure for further instructions
+	 * If the user already existed, it will setup the system for that user.
+	 *
+	 * @param array $values
+	 *
+	 * @return Contact
+	 */
+	public function create(array $values)
+	{
+		try {
+			$result = $this->provider->contact()->create(
+				$values,
+				'name',
+				$this->database
+			);
+
+			$data = $result->getData();
+			if ( isset($data->id)) {
+				$id = $data->id;
+			} else {
+				throw new TripolisException('Create did not return an ID');
+			}
+
+
+		} catch (AlreadyExistsException $e) {
+			$id = $e->getId();
+		}
+
+		return $this->find('_id',$id);
+	}
+
+	/**
 	 * Searches a contact based on a field/value
 	 *
 	 * @param      $fieldOrValue
@@ -39,28 +71,38 @@ class Contact
 	 */
 	public function find($fieldOrValue,$value = null)
 	{
-		if ( $value !== null ) {
-			if ( isset($this->fields[$fieldOrValue]) ) {
-				$field = $this->fields[$fieldOrValue];
-			} else {
-				throw new \InvalidArgumentException("No such field $fieldOrValue");
-			}
-		} else {
-			$field = $this->keyfield;
-			$value = $fieldOrValue;
-		}
 		$this->contact = null;
 
-		$result = $this->provider->contact()->database($this->database)->search(
-			array(
-				array($field,$value)
-			)
-		);
+		if ( $fieldOrValue === '_id' && $value) {
+			$result = $this->provider->contact()->database($this->database)->getById($value);
 
-		$response = $result->getData();
+			$this->contact = $result->getData();
+		} else {
+			if ( $value !== null ) {
+				if ( isset($this->fields[$fieldOrValue]) ) {
+					$field = $this->fields[$fieldOrValue];
+				} else {
+					throw new \InvalidArgumentException("No such field $fieldOrValue");
+				}
+			} else {
+				$field = $this->keyfield;
+				$value = $fieldOrValue;
+			}
 
-		if ( $response->paging->totalItems == 1) {
-			$this->storeContactData($response);
+			$result = $this->provider->contact()->database($this->database)->search(
+				array(
+					array($field,$value)
+				)
+			);
+
+			$response = $result->getData();
+
+			if ( $response->paging->totalItems == 1) {
+				if ( isset($response->contacts->contact[0])) {
+					$contact = $response->contacts->contact[0];
+					$this->storeContactData($contact);
+				}
+			}
 		}
 		return $this;
 	}
@@ -146,13 +188,11 @@ class Contact
 		$this->keyfield = $pk;
 	}
 
-	private function storeContactData($structure)
+	private function storeContactData($contact)
 	{
 		$fields = array();
 
-		if ( isset($structure->contacts->contact[0])) {
-			$contact = $structure->contacts->contact[0];
-
+		if ( isset($contact->contactId)) {
 			$fields['_id'] = $contact->contactId;
 
 			foreach( $contact->contactFields->contactField as $field) {
