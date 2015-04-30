@@ -76,7 +76,7 @@ class Contact
 		if ( $fieldOrValue === '_id' && $value) {
 			$result = $this->provider->contact()->database($this->database)->getById($value);
 
-			$this->contact = $result->getData();
+			$this->updateInternalContact($result->getData());
 		} else {
 			if ( $value !== null ) {
 				if ( isset($this->fields[$fieldOrValue]) ) {
@@ -283,7 +283,15 @@ class Contact
 	 */
 	private function updateInternalContact($fields)
 	{
+		if ( !is_array($this->contact)) {
+			$this->contact = array();
+		}
+
 		$this->contact = array_merge($this->contact,$fields);
+
+		if ( isset($fields['id'])) {
+			$this->contact['_id'] = $fields['id'];
+		}
 	}
 
 	/**
