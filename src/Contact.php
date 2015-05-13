@@ -306,7 +306,7 @@ class Contact
 	{
 		if ( is_array($set)) {
 			foreach( $set as $id => $element) {
-				if ( isset($element->name) && $name) {
+				if ( isset($element->name) && $element->name === $name) {
 					return $id;
 				}
 			}
