@@ -176,7 +176,7 @@ class Request
 				// Stuff for development.
 					'trace' => 1,
 					'exceptions' => true,
-					'cache_wsdl' => WSDL_CACHE_NONE,
+					'cache_wsdl' => defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? WSDL_CACHE_NONE : WSDL_CACHE_BOTH,
 					'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
 			);
 			$this->soap = new \SoapClient($this->provider->getBaseURL() . '/' . $this->service->getServiceURI(),$options);
