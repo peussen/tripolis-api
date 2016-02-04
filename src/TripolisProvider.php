@@ -76,7 +76,7 @@ class TripolisProvider
 	 *
 	 * @param AdapterInterface $cacher
 	 */
-	public function setCacher(AdapterInterface $cacher)
+	public function setCache(AdapterInterface $cacher)
 	{
 		$this->cacher = new Cache($cacher);
 	}
@@ -85,9 +85,9 @@ class TripolisProvider
 	/**
 	 * Retrieves the internal cacher
 	 *
-	 * @return CacheInterface
+	 * @return \Desarrolla2\Cache\Cache
 	 */
-	public function getCacher()
+	public function getCache()
 	{
 		return $this->cacher;
 	}

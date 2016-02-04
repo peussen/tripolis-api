@@ -100,11 +100,23 @@ abstract class AbstractService
 		return $this->invoke('getServiceInfo',array(),false);
 	}
 
+	/**
+	 * Returns the cache provider
+	 *
+	 * @return \Desarrolla2\Cache\Cache
+	 */
 	public function cache()
 	{
-		return $this->provider->getCacher();
+		return $this->provider->getCache();
 	}
 
+	/**
+	 * Stores a response of a method
+	 *
+	 * @param string $func
+	 * @param mixed  $args
+	 * @return bool|mixed
+	 */
 	public function getMethodCache($func,$args)
 	{
 		$key 	= $this->getMethodCacheKey($func,$args);
@@ -116,6 +128,15 @@ abstract class AbstractService
 		return false;
 	}
 
+	/**
+	 * Stores a response of a method in cache
+	 *
+	 * @param string $func
+	 * @param mixed  $args
+	 * @param mixed  $value
+	 * @param int    $ttl
+	 * @return mixed
+	 */
 	public function setMethodCache($func,$args,$value,$ttl = 3600)
 	{
 		$key 	= $this->getMethodCacheKey($func,$args);
@@ -125,6 +146,13 @@ abstract class AbstractService
 		return $value;
 	}
 
+	/**
+	 * Generates a cache key based on the method name and the arguments
+	 *
+	 * @param $method
+	 * @param $args
+	 * @return string
+	 */
 	protected function getMethodCacheKey($method,$args)
 	{
 		return $method . '_' . md5(json_encode($args));
