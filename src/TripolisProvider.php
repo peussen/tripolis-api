@@ -8,6 +8,10 @@
 
 namespace HarperJones\Tripolis;
 
+use Desarrolla2\Cache\Adapter\AdapterInterface;
+use Desarrolla2\Cache\Adapter\NotCache;
+use Desarrolla2\Cache\Cache;
+
 /**
  * Provider for all Tripolis services.
  *
@@ -43,6 +47,13 @@ class TripolisProvider
 	protected $services = array();
 
 	/**
+	 * Value caching mechanism
+	 *
+	 * @var AbstractCache
+	 */
+	protected $cacher = false;
+
+	/**
 	 * Initialises the Tripolis Client Provider, and handles authentication information
 	 *
 	 * @param      $client
@@ -53,10 +64,32 @@ class TripolisProvider
 	public function __construct($client,$username,$password,$dialogue_url = null)
 	{
 		$this->authentication = new Authentication($client,$username,$password);
+		$this->cacher         = new Cache(new NotCache());
 
 		if ( $dialogue_url !== null) {
 			$this->dialogue_instance_url = $dialogue_url;
 		}
+	}
+
+	/**
+	 * Sets an internal caching service to handle caching of (semi) static requests
+	 *
+	 * @param AdapterInterface $cacher
+	 */
+	public function setCacher(AdapterInterface $cacher)
+	{
+		$this->cacher = new Cache($cacher);
+	}
+
+
+	/**
+	 * Retrieves the internal cacher
+	 *
+	 * @return CacheInterface
+	 */
+	public function getCacher()
+	{
+		return $this->cacher;
 	}
 
 	/**

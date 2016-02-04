@@ -100,4 +100,33 @@ abstract class AbstractService
 		return $this->invoke('getServiceInfo',array(),false);
 	}
 
+	public function cache()
+	{
+		return $this->provider->getCacher();
+	}
+
+	public function getMethodCache($func,$args)
+	{
+		$key 	= $this->getMethodCacheKey($func,$args);
+		$cache	= $this->cache();
+
+		if ($cache->has($key)) {
+			return $cache->get($key);
+		}
+		return false;
+	}
+
+	public function setMethodCache($func,$args,$value,$ttl = 3600)
+	{
+		$key 	= $this->getMethodCacheKey($func,$args);
+		$cache	= $this->cache();
+
+		$cache->set($key,$value,$ttl);
+		return $value;
+	}
+
+	protected function getMethodCacheKey($method,$args)
+	{
+		return $method . '_' . md5(json_encode($args));
+	}
 }
