@@ -153,12 +153,13 @@ abstract class Response
 					}
 				}
 
+				// Store the found subset
 				$this->setData($tmp);
+				return;
 			}
-		} else {
-			// We don't know, so just store the whole response
-			$this->data = $reply->response;
 		}
+		// We don't know, so just store the whole response
+		$this->data = $reply->response;
 	}
 
 	protected function setData($data)
