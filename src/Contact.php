@@ -3,14 +3,45 @@
 
 namespace HarperJones\Tripolis;
 
-
+/**
+ * Tripolis Contact maintenance
+ * Wrapper package to handle frequently occuring actions on contacts in the database.
+ *
+ * @package HarperJones\Tripolis
+ */
 class Contact
 {
+	/**
+	 * @var string
+	 */
 	private $database;
+
+	/**
+	 * @var TripolisProvider
+	 */
 	private $provider;
+
+	/**
+	 * All available fields
+	 *
+	 * @var array
+	 */
 	private $fields;
+
+	/**
+	 * The main field (primary index) of the database
+	 *
+	 * @var string
+	 */
 	private $keyfield;
 
+	/**
+	 * A Key/Value array of all data known for the "current" user.
+	 * Allows you to quickly look up any data belonging to the user
+	 * last accessed through this class.
+	 *
+	 * @var array
+	 */
 	protected $contact;
 
 	public function __construct(TripolisProvider $provider, $database)
@@ -21,6 +52,11 @@ class Contact
 		$this->getAllFields();
 	}
 
+	/**
+	 * Obtain a field from the last contact, or NULL if the field was not found.
+	 * @param $field
+	 * @return null
+	 */
 	public function __get($field)
 	{
 		if ( isset($this->contact[$field])) {
