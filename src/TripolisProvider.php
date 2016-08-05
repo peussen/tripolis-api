@@ -11,6 +11,7 @@ namespace HarperJones\Tripolis;
 use Desarrolla2\Cache\Adapter\AdapterInterface;
 use Desarrolla2\Cache\Adapter\NotCache;
 use Desarrolla2\Cache\Cache;
+use HarperJones\Tripolis\Response\UserService\GetByAuthInfoResponse;
 
 /**
  * Provider for all Tripolis services.
@@ -136,6 +137,27 @@ class TripolisProvider
 	{
 		return $this->authentication;
 	}
+
+  /**
+   * Test if we can connect
+   */
+	public function test()
+  {
+    $this->contact()->info();
+
+    $user = $this->user()->getByAuthInfo();
+
+    if ( !$user->hasRole(GetByAuthInfoResponse::ROLE_MODULE_CONTACT)) {
+      throw new UnauthorizedException("API user has insufficient rights (cannot access contacts module)");
+    }
+
+    $dbRes = $this->contact()->contactDatabase()->all();
+    $db    = $dbRes->first();
+
+    if ( !$db ) {
+      throw new UnauthorizedException("API user has insuffient rights (could not access any database)");
+    }
+  }
 
 	/**
 	 * returns an instance of a specific Service
