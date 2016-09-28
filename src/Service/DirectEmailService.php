@@ -29,4 +29,9 @@ class DirectEmailService extends AbstractService
     {
         return $this->invoke(__FUNCTION__,array('id' => $dmId));
     }
+
+    public function create($setup)
+    {
+      return $this->invoke(__FUNCTION__,$setup);
+    }
 }

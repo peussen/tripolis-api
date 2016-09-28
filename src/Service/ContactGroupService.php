@@ -31,6 +31,16 @@ class ContactGroupService extends AbstractService
 		return $this->invoke(__FUNCTION__,$body);
 	}
 
+	public function getById($id, $db = null)
+  {
+    $db = $this->negotiateDB($db);
+
+    $body = array(
+      'id' => $id
+    );
+    return $this->invoke(__FUNCTION__,$body);
+  }
+
 	public function all( $db = null )
 	{
 		return $this->getByContactDatabaseId($db);

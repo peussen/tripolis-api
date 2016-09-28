@@ -21,6 +21,6 @@ class WorkspaceService extends AbstractService
             'contactDatabaseId' => $dbId
         );
 
-        return $this->setMethodCache(__METHOD,$dbId,$this->invoke(__FUNCTION__,$body));
+        return $this->setMethodCache(__METHOD__,$dbId,$this->invoke(__FUNCTION__,$body));
     }
 }
