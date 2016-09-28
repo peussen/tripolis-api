@@ -84,6 +84,28 @@ class DirectMail
     }
 
     /**
+     * Creates a new direct mail from the given setup.
+     *
+     * Parameters that should be passed on through the setup
+     * @param array $setup
+     * @return mixed
+     */
+    public function create($setup)
+    {
+
+      if ( isset($setup['htmlUrl']) ) {
+        $setup['htmlSource'] = $this->loadContent($setup['htmlUrl']);
+      }
+
+      if ( isset($setup['textUrl']) ) {
+        $setup['textSource'] = $this->loadContent($setup['textUrl']);
+      }
+
+      $dm = $this->provider->directEmail()->create($setup);
+      return $dm;
+    }
+
+    /**
      * Finds the directmail id based on the given name
      * Since there is no direct way of searching for direct mail templates based
      * on names, we need to create a mapping which maps all direct mails and their names.
@@ -114,5 +136,28 @@ class DirectMail
             return static::$mapping[$name];
         }
         return false;
+    }
+
+    private function loadContent($url)
+    {
+      $curl     = curl_init($url);
+      $defaults = array(
+        CURLOPT_POST => 1,
+        CURLOPT_HEADER => 0,
+        CURLOPT_URL => $url,
+        CURLOPT_FRESH_CONNECT => 1,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_FORBID_REUSE => 1,
+        CURLOPT_TIMEOUT => 4
+      );
+
+      curl_setopt_array($curl,$defaults);
+      if( ! $result = curl_exec($curl) ) {
+        $ex = new TripolisException(curl_error($curl),curl_errno($curl));
+        curl_close($curl);
+        throw $ex;
+      }
+      curl_close($curl);
+      return $result;
     }
 }
