@@ -34,4 +34,18 @@ class DirectEmailService extends AbstractService
     {
       return $this->invoke(__FUNCTION__,$setup);
     }
+
+    public function update($id,$html,$text = null)
+    {
+      $body = array(
+        'id'        => $id,
+        'htmlSource'=> $html,
+      );
+
+      if ( $text === null ) {
+        $body['textSource'] = $text;
+      }
+
+      return $this->invoke(__FUNCTION__,$body);
+    }
 }
