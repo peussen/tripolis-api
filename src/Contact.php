@@ -75,9 +75,19 @@ class Contact
 	 */
 	public function create(array $values)
 	{
+	  $submitValues = [];
+
+	  foreach( $values as $key => $value ) {
+      if ( isset($this->fields[$key])) {
+        $submitValues[$key] = $value;
+      } else if ( ($name = array_search($key,$this->fields)) ) {
+        $submitValues[$name] = $value;
+      }
+    }
+
 		try {
 			$result = $this->provider->contact()->create(
-				$values,
+				$submitValues,
 				'name',
 				$this->database
 			);
@@ -96,6 +106,16 @@ class Contact
 
 		return $this->find('_id',$id);
 	}
+
+  /**
+   * Get the key field
+   *
+   * @return string
+   */
+	public function keyField()
+  {
+    return $this->keyfield;
+  }
 
 	/**
 	 * Searches a contact based on a field/value
@@ -117,7 +137,9 @@ class Contact
 			if ( $value !== null ) {
 				if ( isset($this->fields[$fieldOrValue]) ) {
 					$field = $this->fields[$fieldOrValue];
-				} else {
+				} elseif ( !in_array($fieldOrValue,$this->fields)) {
+				  $field = $fieldOrValue;
+        } else {
 					throw new \InvalidArgumentException("No such field $fieldOrValue");
 				}
 			} else {
