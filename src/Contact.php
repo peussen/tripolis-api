@@ -75,15 +75,7 @@ class Contact
 	 */
 	public function create(array $values)
 	{
-	  $submitValues = [];
-
-	  foreach( $values as $key => $value ) {
-      if ( isset($this->fields[$key])) {
-        $submitValues[$key] = $value;
-      } else if ( ($name = array_search($key,$this->fields)) ) {
-        $submitValues[$name] = $value;
-      }
-    }
+	  $submitValues = $this->filterInput($values);
 
 		try {
 			$result = $this->provider->contact()->create(
@@ -207,6 +199,7 @@ class Contact
 			return false;
 		}
 
+		$fields               = $this->filterInput($fields);
 		$internalUpdateFields = array();
 
 		foreach( $fields as $field => $value ) {
@@ -395,5 +388,26 @@ class Contact
 		}
 		return false;
 	}
+
+  /**
+   * Make sure the field mapping is correct
+   *
+   * @param  array $data
+   * @return array
+   */
+  private function filterInput($data)
+  {
+    $submitValues = [];
+
+    foreach( $data as $key => $value ) {
+      if ( isset($this->fields[$key])) {
+        $submitValues[$key] = $value;
+      } else if ( ($name = array_search($key,$this->fields)) ) {
+        $submitValues[$name] = $value;
+      }
+    }
+
+    return $submitValues;
+  }
 
 }
