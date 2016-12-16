@@ -287,6 +287,30 @@ class Contact
 		throw new \InvalidArgumentException("No such group $group");
 	}
 
+
+  /**
+   * Returns a list of subscriptions
+   *
+   * @return array
+   */
+  public function subscriptions()
+  {
+    if ( !$this->valid() ) {
+      return false;
+    }
+
+    $service = $this->provider->contact()->database($this->database);
+    $result  = $service->getContactGroupSubscriptions($this->contact['_id'],'SUBSCRIPTION');
+
+    $all = [];
+
+    foreach( $result as $group ) {
+      $all[$group->contactGroupId] = $group->label;
+    }
+    return $all;
+  }
+
+
 	/**
 	 * Get a list of fields for the database & creates a key/value set of fields
 	 *
