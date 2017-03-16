@@ -6,10 +6,10 @@
  * Time: 09:56
  */
 
-namespace HarperJones\Tripolis\Response\ContactService;
+namespace MartyBel\Tripolis\Response\ContactService;
 
 
-use HarperJones\Tripolis\Response\AbstractIteratorResponse;
+use MartyBel\Tripolis\Response\AbstractIteratorResponse;
 
 class GetContactGroupSubscriptionsResponse extends AbstractIteratorResponse
 {

@@ -6,9 +6,9 @@
  * Time: 15:41
  */
 
-namespace HarperJones\Tripolis\Response;
+namespace MartyBel\Tripolis\Response;
 
-use HarperJones\Tripolis\Response;
+use MartyBel\Tripolis\Response;
 
 /**
  * Base response object for responses that contain lists

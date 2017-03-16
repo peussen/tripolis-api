@@ -6,7 +6,7 @@
  * Time: 15:20
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 /**
  * SubscriptionService Implementation

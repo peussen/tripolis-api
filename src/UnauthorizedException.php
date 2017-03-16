@@ -6,7 +6,7 @@
  * Time: 17:16
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 /**
  * Class UnauthorizedException

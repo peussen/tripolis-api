@@ -6,7 +6,7 @@
  * Time: 12:58
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 
 class UserService extends AbstractService

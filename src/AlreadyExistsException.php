@@ -6,7 +6,7 @@
  * Time: 15:36
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 /**
  * Record already exists, with the added bonus of having the id at hand

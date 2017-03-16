@@ -6,10 +6,10 @@
  * Time: 13:03
  */
 
-namespace HarperJones\Tripolis\Response\UserService;
+namespace MartyBel\Tripolis\Response\UserService;
 
 
-use HarperJones\Tripolis\Response\AbstractIteratorResponse;
+use MartyBel\Tripolis\Response\AbstractIteratorResponse;
 
 class GetUsersInClientDomainByAuthInfoResponse extends AbstractIteratorResponse
 {

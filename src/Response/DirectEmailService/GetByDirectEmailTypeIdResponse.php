@@ -4,10 +4,10 @@
  * @package: hj2016
  */
 
-namespace HarperJones\Tripolis\Response\DirectEmailService;
+namespace MartyBel\Tripolis\Response\DirectEmailService;
 
 
-use HarperJones\Tripolis\Response\AbstractIteratorResponse;
+use MartyBel\Tripolis\Response\AbstractIteratorResponse;
 
 class GetByDirectEmailTypeIdResponse extends AbstractIteratorResponse
 {

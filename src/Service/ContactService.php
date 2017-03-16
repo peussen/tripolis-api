@@ -6,10 +6,10 @@
  * Time: 15:37
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
-use HarperJones\Tripolis\AlreadyExistsException;
-use HarperJones\Tripolis\TripolisProvider;
+use MartyBel\Tripolis\AlreadyExistsException;
+use MartyBel\Tripolis\TripolisProvider;
 
 /**
  * ContactService Client (Partial)

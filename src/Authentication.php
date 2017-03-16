@@ -5,7 +5,7 @@
  * @author  Peter Eussen <peter.eussen@harperjones.nl>
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 /**
  * Class Authentication

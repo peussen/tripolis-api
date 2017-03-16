@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 /**
  * Tripolis Contact maintenance

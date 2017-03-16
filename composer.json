@@ -1,5 +1,5 @@
 {
-    "name": "harperjones/tripolis-api",
+    "name": "martybel/tripolis-api",
     "description": "Tripolis Mail Application API",
     "type": "library",
     "keywords": ["Tripolis","API","SOAP"],
@@ -7,11 +7,11 @@
     "authors": [
         {
             "name": "peter.eussen",
-            "email": "peter.eussen@harperjones.nl"
+            "email": "peter.eussen@gmail.com"
         }
     ],
     "autoload": {
-      "psr-4": { "HarperJones\\Tripolis\\": "src"}
+      "psr-4": { "MartyBel\\Tripolis\\": "src"}
     },
     "require": {
       "php": ">=5.4",

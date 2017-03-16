@@ -6,7 +6,7 @@
  * Time: 16:03
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 
 class NotFoundException extends TripolisException

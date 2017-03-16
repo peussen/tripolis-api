@@ -6,9 +6,9 @@
  * Time: 15:51
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
-use HarperJones\Tripolis\Service\DatabaseTrait;
+use MartyBel\Tripolis\Service\DatabaseTrait;
 
 class ContactDatabaseFieldGroupService extends AbstractService
 {

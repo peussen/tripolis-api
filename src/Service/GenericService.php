@@ -6,9 +6,9 @@
  * Time: 09:45
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
-use HarperJones\Tripolis\TripolisProvider;
+use MartyBel\Tripolis\TripolisProvider;
 
 class GenericService extends AbstractService
 {

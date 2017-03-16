@@ -6,12 +6,12 @@
  * Time: 15:09
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 use Desarrolla2\Cache\Adapter\AdapterInterface;
 use Desarrolla2\Cache\Adapter\NotCache;
 use Desarrolla2\Cache\Cache;
-use HarperJones\Tripolis\Response\UserService\GetByAuthInfoResponse;
+use MartyBel\Tripolis\Response\UserService\GetByAuthInfoResponse;
 
 /**
  * Provider for all Tripolis services.

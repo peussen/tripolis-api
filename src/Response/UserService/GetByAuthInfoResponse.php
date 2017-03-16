@@ -6,10 +6,10 @@
  * Time: 13:08
  */
 
-namespace HarperJones\Tripolis\Response\UserService;
+namespace MartyBel\Tripolis\Response\UserService;
 
 
-use HarperJones\Tripolis\Response\GenericResponse;
+use MartyBel\Tripolis\Response\GenericResponse;
 
 /**
  * Returns information about the current user

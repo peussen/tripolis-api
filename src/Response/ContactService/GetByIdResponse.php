@@ -6,10 +6,10 @@
  * Time: 14:39
  */
 
-namespace HarperJones\Tripolis\Response\ContactService;
+namespace MartyBel\Tripolis\Response\ContactService;
 
 
-use HarperJones\Tripolis\Response;
+use MartyBel\Tripolis\Response;
 
 class GetByIdResponse extends Response
 {

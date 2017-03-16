@@ -4,7 +4,7 @@
  * @package: hj2016
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 /**
  * Handles sending of a (transational) directmail to someone

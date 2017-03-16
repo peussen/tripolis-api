@@ -6,18 +6,18 @@
  * Time: 15:36
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 
-use HarperJones\Tripolis\Request;
-use HarperJones\Tripolis\TripolisProvider;
+use MartyBel\Tripolis\Request;
+use MartyBel\Tripolis\TripolisProvider;
 
 abstract class AbstractService
 {
 	protected $serviceURI;
 
 	/**
-	 * @var \HarperJones\Tripolis\TripolisProvider
+	 * @var \MartyBel\Tripolis\TripolisProvider
 	 */
 	protected $provider;
 	protected $client = null;

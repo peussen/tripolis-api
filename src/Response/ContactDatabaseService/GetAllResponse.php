@@ -6,9 +6,9 @@
  * Time: 14:38
  */
 
-namespace HarperJones\Tripolis\Response\ContactDatabaseService;
+namespace MartyBel\Tripolis\Response\ContactDatabaseService;
 
-use HarperJones\Tripolis\Response;
+use MartyBel\Tripolis\Response;
 
 class GetAllResponse extends Response\AbstractIteratorResponse
 {

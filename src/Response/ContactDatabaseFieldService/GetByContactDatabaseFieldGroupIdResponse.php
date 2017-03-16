@@ -6,10 +6,10 @@
  * Time: 12:03
  */
 
-namespace HarperJones\Tripolis\Response\ContactDatabaseFieldService;
+namespace MartyBel\Tripolis\Response\ContactDatabaseFieldService;
 
 
-use HarperJones\Tripolis\Response\AbstractIteratorResponse;
+use MartyBel\Tripolis\Response\AbstractIteratorResponse;
 
 class GetByContactDatabaseFieldGroupIdResponse extends AbstractIteratorResponse
 {

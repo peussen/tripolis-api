@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93bfdd4df89814c791da6eaecc380e27",
-    "content-hash": "6d928b7a0b98c39b89007356f07db8bd",
+    "content-hash": "26eead13979b7d2af4758454a825429d",
     "packages": [
         {
             "name": "desarrolla2/cache",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/desarrolla2/Cache.git",
-                "reference": "5a9b1b55cf666328cb3ca161357ccd767225fea0"
+                "reference": "ebd1f7bfd1be605a9b5fbb0a4b25a948a31fe963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/desarrolla2/Cache/zipball/5a9b1b55cf666328cb3ca161357ccd767225fea0",
-                "reference": "5a9b1b55cf666328cb3ca161357ccd767225fea0",
+                "url": "https://api.github.com/repos/desarrolla2/Cache/zipball/ebd1f7bfd1be605a9b5fbb0a4b25a948a31fe963",
+                "reference": "ebd1f7bfd1be605a9b5fbb0a4b25a948a31fe963",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +59,7 @@
                 "mysql",
                 "redis"
             ],
-            "time": "2015-11-26 12:29:49"
+            "time": "2017-01-18T12:58:33+00:00"
         }
     ],
     "packages-dev": [],

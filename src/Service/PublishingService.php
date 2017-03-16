@@ -4,7 +4,7 @@
  * @package: hj2016
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 
 class PublishingService extends AbstractService

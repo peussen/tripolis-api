@@ -5,11 +5,11 @@
  * @author  Peter Eussen <peter.eussen@harperjones.nl>
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
-use HarperJones\Tripolis\Response;
-use HarperJones\Tripolis\Response\GenericResponse;
-use HarperJones\Tripolis\Service\AbstractService;
+use MartyBel\Tripolis\Response;
+use MartyBel\Tripolis\Response\GenericResponse;
+use MartyBel\Tripolis\Service\AbstractService;
 
 /**
  * Wrapper to create a request to Tripolis, and understand the response
@@ -20,7 +20,7 @@ class Request
 {
 	/**
 	 *
-	 * @var \HarperJones\Tripolis\TripolisProvider
+	 * @var \MartyBel\Tripolis\TripolisProvider
 	 */
 	protected $provider;
 

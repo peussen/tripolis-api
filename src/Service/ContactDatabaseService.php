@@ -6,7 +6,7 @@
  * Time: 12:02
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 
 class ContactDatabaseService extends AbstractService

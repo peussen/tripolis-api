@@ -6,7 +6,7 @@
  * Time: 15:37
  */
 
-namespace HarperJones\Tripolis;
+namespace MartyBel\Tripolis;
 
 
 use Exception;

@@ -4,10 +4,10 @@
  * @package: hj2016
  */
 
-namespace HarperJones\Tripolis\Response\WorkspaceService;
+namespace MartyBel\Tripolis\Response\WorkspaceService;
 
 
-use HarperJones\Tripolis\Response\AbstractIteratorResponse;
+use MartyBel\Tripolis\Response\AbstractIteratorResponse;
 
 class GetByContactDatabaseIdResponse extends AbstractIteratorResponse
 {

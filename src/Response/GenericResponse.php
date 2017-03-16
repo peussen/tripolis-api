@@ -6,10 +6,10 @@
  * Time: 11:14
  */
 
-namespace HarperJones\Tripolis\Response;
+namespace MartyBel\Tripolis\Response;
 
 
-use HarperJones\Tripolis\Response;
+use MartyBel\Tripolis\Response;
 
 class GenericResponse extends Response
 {

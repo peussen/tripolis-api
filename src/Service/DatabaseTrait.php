@@ -6,7 +6,7 @@
  * Time: 16:10
  */
 
-namespace HarperJones\Tripolis\Service;
+namespace MartyBel\Tripolis\Service;
 
 /**
  * Adds functionality to allow the use of databases in API calls
