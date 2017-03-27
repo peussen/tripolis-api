@@ -99,15 +99,17 @@ class Request
 			$envelope = new \SimpleXMLElement($xml);
 			$detail   = $envelope->Body->Fault->detail;
 
-			if (isset($detail->errorResponse->errors->error->message)) {
+
+			if ( !empty($detail) && isset($detail->errorResponse->errors->error->message)) {
 				$errorMessage = (string)$detail->errorResponse->errors->error->message;
+				$error = $detail->errorResponse->errors->error;
+				$code  = (int)$error->errorCode;
 			}
 			else {
 				$errorMessage = $f->getMessage();
+				$error = false;
+				$code  = false;
 			}
-
-			$error = $detail->errorResponse->errors->error;
-			$code  = (int)$error->errorCode;
 
 			switch( $code ) {
 				case 300:
