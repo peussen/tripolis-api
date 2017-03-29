@@ -52,7 +52,7 @@ class Authentication
 	public function __toString()
 	{
 		return sprintf(
-			'<ser/:authInfo><client>%s</client><username>%s</username><password>%s</password></ser:authInfo',
+			'<ser:authInfo><client>%s</client><username>%s</username><password>%s</password></ser:authInfo>',
 			$this->client,
 			$this->username,
 			$this->password
